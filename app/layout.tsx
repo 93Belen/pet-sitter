@@ -3,6 +3,15 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import SignInButton from './components/SigninButton';
 import { PrismaClient } from '.prisma/client';
+import { Montserrat } from 'next/font/google'
+import SignOutButton from './components/SignoutButton'
+import Nav from './components/Nav';
+
+const montserrat = Montserrat({
+  weight: ['100', '200', '300', '400'],
+  subsets: ['latin'],
+  variable: '--font-mont'
+})
 
 export const metadata = {
   title: 'Create Next App',
@@ -25,19 +34,23 @@ export default async function RootLayout({
   })
   const session = await getServerSession(authOptions)
   return (
-    <html lang="en">
+    <html lang="en" className={`${montserrat.variable} p-10`}>
       {!session?.user && (
-        <body>
+        <body className="flex justify-center text-xl text-mytheme font-bold hover:font-black">
           <SignInButton />
         </body>
       )}
       {session?.user && session?.user?.email !== authorizedEmail?.email && (
-        <body>
-          <h1>Sorry this email is not authorized</h1>
+        <body className='fex text-xl font-bold'>
+          <p>Sorry this email is not authorized</p>
+          <SignOutButton />
         </body>
       )}
       {session?.user && session?.user?.email === authorizedEmail?.email && (
-        <body>{children}</body>
+        <body>
+          <Nav />
+          {children}
+          </body>
       )}
     </html>
   )
