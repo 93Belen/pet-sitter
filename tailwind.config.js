@@ -12,7 +12,8 @@ module.exports = {
       }
     },
     colors: {
-      'mytheme': "#4BC9AB"
+      'mytheme': "#4BC9AB",
+      "mygray": "#EFEFEF"
     }
   },
   plugins: [],

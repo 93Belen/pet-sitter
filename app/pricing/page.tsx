@@ -2,8 +2,10 @@
 
 export default function Pricing() {
     return (
-      <main>
-       <h1>Pricing</h1>
+      <main className='pt-10 flex'>
+       <div></div>
+       <div></div>
+       <div></div>
       </main>
     )
   }
