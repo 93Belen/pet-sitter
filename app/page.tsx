@@ -11,9 +11,9 @@ const fullAndNightStyle = { background: '#4BC9AB' };
 
 
 export default function Home() {
-  const [halfDays, setHalfDays] = useState([new Date(1993, 8, 8)]);
-  const [fullDays, setFullDays]= useState([new Date(1993, 8, 8)])
-  const [dayAndNight, setdayAndnight] = useState([new Date(1993, 8, 8)]);
+  const [halfDays, setHalfDays] = useState<Date[]>([]);
+  const [fullDays, setFullDays]= useState<Date[]>([])
+  const [dayAndNight, setdayAndnight] = useState<Date[]>([]);
 
 
   const isItInHalf = (day: Date) => {
