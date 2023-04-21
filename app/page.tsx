@@ -59,15 +59,16 @@ export default function Home() {
   }
 
 
- 
-  const findIndex = (day: Date, arr: Date[]) => {
-    let found = -1
-    arr.forEach((element: Date, index: number) => {
+  const removeDate = (day: Date, arr: Date[]) => {
+    const newArr = arr.filter((element: Date) => {
       if(element.getTime() === day.getTime()){
-          found = index
+          
+      }
+      else {
+        return element
       }
     })
-    return found
+    return newArr;
   }
 
 
@@ -78,25 +79,20 @@ export default function Home() {
     if(!isItInHalf(day) && !isItInFull(day) && !isItInNight(day)){
       setHalfDays((prev) => [...prev, day])
     }
-    if(isItInHalf(day)){
-      const i = findIndex(day, halfDays)
-      console.log(i)
-      const newArr = halfDays.filter((value, index) => index !== i)
-      setHalfDays(newArr)
+    else if(isItInHalf(day)){
+
+      const newArr = removeDate(day, halfDays)
+      setHalfDays(newArr);
       setFullDays((prev) => [...prev, day])
     }
-    if(isItInFull(day) ){
-      const i = findIndex(day, fullDays)
-      console.log(i)
-      const newArr = fullDays.filter((value, index) => index !== i)
-      setFullDays(newArr)
+    else if(isItInFull(day) ){
+      const nweArr = removeDate(day, fullDays)
+      setFullDays(nweArr)
       setdayAndnight((prev) => [...prev, day])
     }
-    if(isItInNight(day)){
-      const i = findIndex(day, dayAndNight)
-      console.log(i)
-      const newArr = dayAndNight.filter((value, index) => index !== i)
-      setdayAndnight(newArr)
+    else if(isItInNight(day)){
+      const nweArr = removeDate(day, dayAndNight)
+      setdayAndnight(nweArr)
     }
   };
 
