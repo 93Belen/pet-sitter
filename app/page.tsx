@@ -2,9 +2,7 @@
 
 import { DayPicker, DayClickEventHandler } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
-import { useState } from 'react';
-import { prisma } from 'components/prisma/seed';
-import { json } from 'stream/consumers';
+import { useEffect, useState } from 'react';
 
 
 
@@ -25,6 +23,28 @@ export default function Home() {
   const [fullDays, setFullDays]= useState<Date[]>([])
   const [dayAndNight, setdayAndnight] = useState<Date[]>([]);
 
+  const getCalendar = async() => {
+    // Half day
+      const response = await fetch('api/getcalendar/halfday')
+      const jsonResponse: Availability[] = await response.json();
+      const arrOfDates: Date[] = jsonResponse.map(element => new Date(Number(element.date)));
+      setHalfDays(arrOfDates)
+
+    // Full Day
+    const responseTwo = await fetch('api/getcalendar/fullday')
+    const jsonResponseTwo: Availability[] = await responseTwo.json();
+    const arrOfDatesTwo: Date[] = jsonResponseTwo.map(element => new Date(Number(element.date)));
+    setFullDays(arrOfDatesTwo)
+
+    // Day and night
+    const responseThree = await fetch('api/getcalendar/dayandnight')
+    const jsonResponseThree: Availability[] = await responseThree.json();
+    const arrOfDatesThree: Date[] = jsonResponseThree.map(element => new Date(Number(element.date)));
+    setdayAndnight(arrOfDatesThree)
+  }
+  useEffect(() => {
+    getCalendar()
+  },[])
 
   const isItInHalf = (day: Date) => {
     let result;
@@ -135,7 +155,7 @@ export default function Home() {
   const res = await fetch('api/addtocalendar', {
     method: 'POST',
     body: JSON.stringify({availabilities})
-  })
+  }).then(() => getCalendar())
   
   }
   

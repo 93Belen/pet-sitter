@@ -10,6 +10,6 @@ export async function POST(req: Request) {
         skipDuplicates: true
     })
   
-    return Response.json(responseFromPrisma);
+    return new Response(JSON.stringify(responseFromPrisma));
   }
   
