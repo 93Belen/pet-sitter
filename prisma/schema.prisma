@@ -18,10 +18,8 @@ model Review {
 
 model Availability {
   id String @id @default(cuid())
-  day Int
-  month Int
-  year Int
-  status String?
+  date BigInt
+  status String
 }
 
 model Pricing {

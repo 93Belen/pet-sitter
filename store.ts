@@ -4,7 +4,8 @@ import { persist } from 'zustand/middleware'
 export const useCalendar = create()(
     persist(
         (set) => ({
-            calendar: []
+            calendar: [],
+            addData: (newData: []) => set({ calendar: [newData] })
         }),
         {name: 'calendar'}
     )

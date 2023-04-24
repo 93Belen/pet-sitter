@@ -1,12 +1,22 @@
 "use client"
-import { format } from 'date-fns';
+
 import { DayPicker, DayClickEventHandler } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import { useState } from 'react';
+import { prisma } from 'components/prisma/seed';
+import { json } from 'stream/consumers';
+
+
+
 
 const halfStyle = { border: '4px solid #C94B4B' };
 const fullStyle = { border: '4px solid #4BC9AB' };
 const fullAndNightStyle = { background: '#4BC9AB' };
+
+type Availability = {
+  date: number,
+  status: string
+}
 
 
 
@@ -101,6 +111,33 @@ export default function Home() {
   console.log('days and nights',dayAndNight)
 
 
+
+  const sendToDB = async() => {
+    const availabilities: Availability[] = []
+    halfDays.forEach(day => {
+      availabilities.push({
+        'date': day.getTime(),
+        'status': 'Half Day'
+      })
+    })
+    fullDays.forEach(day => {
+      availabilities.push({
+        'date': day.getTime(),
+        'status': 'Full Day'
+      })
+    })
+    dayAndNight.forEach(day => {
+      availabilities.push({
+        'date': day.getTime(),
+        'status': 'Day And Night'
+      })
+    })
+  const res = await fetch('api/addtocalendar', {
+    method: 'POST',
+    body: JSON.stringify({availabilities})
+  })
+  
+  }
   
   
   return (
@@ -114,7 +151,7 @@ export default function Home() {
       </div>
       <div className='w-full h-[70vh]'>
         <div className='flex flex-col justify-center p-7 gap-5 h-3/5'>
-        <button className='bg-mytheme py-3 px-6 rounded-full w-fit'>Edit Availability</button>
+        <button onClick={sendToDB} className='bg-mytheme py-3 px-6 rounded-full w-fit'>Edit Availability</button>
         <div className='flex gap-5'>
           <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12.5" cy="12.5" r="10.5" stroke="#C94B4B" stroke-width="4"/>
