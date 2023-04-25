@@ -166,15 +166,16 @@ export default function Home() {
   
   
   return (
-    <main className='flex pt-10 gap-20 justify-center'>
-      <div className='w-full h-[70vh] m-auto flex justify-items-center justify-center'>
+    <main className='md:flex md:gap-20 gap-20 justify-center md:pt-28 pt-10'>
+      <div className='w-full md:h-[70vh] m-auto flex justify-items-center justify-center'>
         <DayPicker
         modifiers={{ half: halfDays, full: fullDays, night: dayAndNight}}
         modifiersStyles={{ half: halfStyle, full: fullStyle, night: fullAndNightStyle }}
-        onDayClick={handleDayClick}  
+        onDayClick={handleDayClick}
+        className='m-auto'
         />
       </div>
-      <div className='w-full h-[70vh]'>
+      <div className='w-full md:h-[70vh]'>
         <div className='flex flex-col justify-center p-7 gap-5 h-3/5'>
 
         <button
@@ -184,12 +185,12 @@ export default function Home() {
           <AnimatePresence>   
           {clicked && (
             <>
-            <motion.p animate={{width: 0, opacity: 0}} transition={{ease: "linear", duration: 0.4, }} initial={{width: 'fit-content', opacity: 1}} id='button-text'>Save</motion.p>
+            <motion.p animate={{width: 0, opacity: 0}} transition={{ease: "linear", duration: 0.3, }} initial={{width: 'fit-content', opacity: 1}} id='button-text'>Save</motion.p>
             </>
           )}
           {!clicked && (
            <>
-           <motion.p animate={{width: 'fit-content', opacity: 1}} transition={{ease: "linear", duration: 0.4,}} initial={{width: 0, opacity: 0}} id='button-text'>Save</motion.p>
+           <motion.p animate={{width: 'fit-content', opacity: 1}} transition={{ease: "linear", duration: 0.3,}} initial={{width: 0, opacity: 0}} id='button-text'>Save</motion.p>
            </>
           )}
           <BsCheckCircleFill className='m-auto' />

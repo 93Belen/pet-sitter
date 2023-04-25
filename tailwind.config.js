@@ -15,7 +15,8 @@ module.exports = {
         "mylighttheme": '#79ECD0',
         "mygray": "#EFEFEF",
         "myred": "#C94B4B",
-        "mylightred": "#E77575"
+        "mylightred": "#E77575",
+        "mydarkgray": "#D1CFCF"
       }
     },
     

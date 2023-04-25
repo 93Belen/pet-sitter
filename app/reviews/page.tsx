@@ -78,7 +78,7 @@ const deleteReview = async(idToDelete: string) => {
         <motion.div layout key={review.id} className='p-6 bg-mygray rounded-lg flex flex-col gap-5'>
          <h2>{review.user}</h2>
          <p>{review.text}</p>
-         <div className='flex gap-2 justify-self-end self-end w-2/5'>
+         <div className='flex gap-2 justify-self-end self-end md:w-2/5'>
          <button onClick={() => {deleteReview(review.id)}} className='bg-myred py-3 px-6 rounded-full w-fit m-auto text-white text-sm hover:bg-mylightred duration-1000 pointer-events-auto'>Delete</button>
          <button onClick={() => {
            setId(review.id)
@@ -88,9 +88,9 @@ const deleteReview = async(idToDelete: string) => {
          <motion.div
          layout>
          {review.answer && (
-           <div className='bg-mytheme p-3 rounded-lg text-white'>
+           <motion.div className='p-3 rounded-lg bg-mydarkgray'>
               <p>Answer: {review.answer}</p>
-           </div>
+           </motion.div>
           
          )}
          </motion.div>
@@ -106,7 +106,7 @@ const deleteReview = async(idToDelete: string) => {
       <AnimatePresence>
       <motion.main
       layout
-       className='pt-10 flex flex-col gap-10'>
+       className='md:pt-10 pt-28 flex flex-col gap-10'>
         <AnimatePresence>
           {show && (
             <motion.div
@@ -115,7 +115,7 @@ const deleteReview = async(idToDelete: string) => {
             animate={{right: 0, opacity: 1}}
             exit={{right: -250, opacity: 0}}
             transition={{ease: "linear", duration: 0.4}}
-            className={`absolute bg-mygray w-3/6 h-screen top-0 right-[-200px] flex flex-col justify-around p-10`}>
+            className={`absolute bg-mygray md:w-3/6 w-[90vw] h-screen top-0 right-[-200px] flex flex-col justify-around p-10`}>
             <IoClose onClick={hideForm} />
             <textarea onChange={answerOnChange} maxLength={150}  className='rounded-lg p-7' cols={10} rows={12} name="description" id="description" />
             <button onClick={postAnswer} className='bg-mytheme py-3 px-6 rounded-full w-fit'>Answer</button>

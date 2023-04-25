@@ -5,7 +5,7 @@ import Link from "next/link"
 
 export default function Nav() {
     return (
-        <nav className='flex justify-end w-full list-none'>
+        <nav className='md:flex justify-end w-full list-none hidden'>
             <div className='flex justify-around w-3/6'>
             <Link href='/' className='hover:text-mytheme duration-1000'>Dashboard</Link>
             <Link href='/reviews' className='hover:text-mytheme duration-1000'>Reviews</Link>
