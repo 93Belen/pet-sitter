@@ -1,7 +1,7 @@
 import { prisma } from "components/prisma/seed";
-import { id } from "date-fns/locale";
 
-export async function POST(req: Request) {
+
+export async function UPDATE(req: Request) {
 
     const { id, description, price } = await req.json();
     

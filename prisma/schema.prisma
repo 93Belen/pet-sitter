@@ -12,6 +12,7 @@ datasource db {
 
 model Review {
   id String @id @default(cuid())
+  user String
   text String
   answer String?
 }

@@ -9,12 +9,14 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['var(--font-mont)']
+      },
+      colors: {
+        'mytheme': "#4BC9AB",
+        "mygray": "#EFEFEF",
+        "myred": "#C94B4B",
       }
     },
-    colors: {
-      'mytheme': "#4BC9AB",
-      "mygray": "#EFEFEF"
-    }
+    
   },
   plugins: [],
 }
