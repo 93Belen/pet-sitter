@@ -23,8 +23,8 @@ model Availability {
 }
 
 model Pricing {
-  id String @id @default(cuid())
-  title String
+  id Int @id
+  title String?
   description String
   price Int
 }
