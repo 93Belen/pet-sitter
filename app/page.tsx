@@ -3,6 +3,8 @@
 import { DayPicker, DayClickEventHandler } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import { useEffect, useState } from 'react';
+import { BsCheckCircleFill } from 'react-icons/bs'
+import { AnimatePresence, motion } from 'framer-motion'
 
 
 
@@ -22,7 +24,7 @@ export default function Home() {
   const [halfDays, setHalfDays] = useState<Date[]>([]);
   const [fullDays, setFullDays]= useState<Date[]>([])
   const [dayAndNight, setdayAndnight] = useState<Date[]>([]);
-
+  const [clicked, setClicked] = useState(false)
   const getCalendar = async() => {
     // Half day
       const response = await fetch('api/getcalendar/halfday')
@@ -156,13 +158,16 @@ export default function Home() {
     method: 'POST',
     body: JSON.stringify({availabilities})
   }).then(() => getCalendar())
-  
+  setClicked(true)
+  setTimeout(() => {
+    setClicked(false)
+  }, 1000)
   }
   
   
   return (
-    <main className='flex pt-10 gap-20'>
-      <div className='w-full h-[70vh]'>
+    <main className='flex pt-10 gap-20 justify-center'>
+      <div className='w-full h-[70vh] m-auto flex justify-items-center justify-center'>
         <DayPicker
         modifiers={{ half: halfDays, full: fullDays, night: dayAndNight}}
         modifiersStyles={{ half: halfStyle, full: fullStyle, night: fullAndNightStyle }}
@@ -171,7 +176,26 @@ export default function Home() {
       </div>
       <div className='w-full h-[70vh]'>
         <div className='flex flex-col justify-center p-7 gap-5 h-3/5'>
-        <button onClick={sendToDB} className='bg-mytheme py-3 px-6 rounded-full w-fit'>Edit Availability</button>
+
+        <button
+        id='save-button' 
+        onClick={sendToDB} 
+        className='bg-mytheme py-3 px-6 rounded-full w-fit hover:bg-mylighttheme duration-1000 pointer-events-auto flex gap-2 justify-center'>
+          <AnimatePresence>   
+          {clicked && (
+            <>
+            <motion.p animate={{width: 0, opacity: 0}} transition={{ease: "linear", duration: 0.4, }} initial={{width: 'fit-content', opacity: 1}} id='button-text'>Save</motion.p>
+            </>
+          )}
+          {!clicked && (
+           <>
+           <motion.p animate={{width: 'fit-content', opacity: 1}} transition={{ease: "linear", duration: 0.4,}} initial={{width: 0, opacity: 0}} id='button-text'>Save</motion.p>
+           </>
+          )}
+          <BsCheckCircleFill className='m-auto' />
+          </AnimatePresence>  
+        </button>
+
         <div className='flex gap-5'>
           <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12.5" cy="12.5" r="10.5" stroke="#C94B4B" stroke-width="4"/>

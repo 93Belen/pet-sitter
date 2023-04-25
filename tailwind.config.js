@@ -12,8 +12,10 @@ module.exports = {
       },
       colors: {
         'mytheme': "#4BC9AB",
+        "mylighttheme": '#79ECD0',
         "mygray": "#EFEFEF",
         "myred": "#C94B4B",
+        "mylightred": "#E77575"
       }
     },
     
