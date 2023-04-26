@@ -20,6 +20,7 @@ export default function Reviews() {
   const [id, setId] = useState('')
 
 
+
   const getReviews = async() => {
     const res = await fetch('api/reviews/getall')
     const jsonRes = await res.json()
@@ -106,7 +107,7 @@ const deleteReview = async(idToDelete: string) => {
       <AnimatePresence>
       <motion.main
       layout
-       className='md:pt-10 pt-28 flex flex-col gap-10'>
+       className='pt-28 flex flex-col gap-10'>
         <AnimatePresence>
           {show && (
             <motion.div

@@ -19,6 +19,7 @@ const [show, setShow] = useState(false)
 const [halfDayInfo, setHalfDayInfo] = useState<dayInfo>()
 const [fullDayInfo, setFullDayInfo] = useState<dayInfo>()
 const [dayAndNightInfo, setdayAndNightInfo] = useState<dayInfo>()
+const [lettercount, setLetterCount] = useState(0)
 
 
 
@@ -30,16 +31,22 @@ const [dayAndNightInfo, setdayAndNightInfo] = useState<dayInfo>()
       description: description,
       price: price
     }
-    const res = await fetch('api/addPricing', {
-      method: 'POST',
-      body: JSON.stringify(data)
-    })
-    const jsonRes = await res.json()
-    return jsonRes;
+    if(description.length > 100 && Number(price) > 0){
+      const res = await fetch('api/addPricing', {
+        method: 'POST',
+        body: JSON.stringify(data)
+      })
+      const jsonRes = await res.json()
+      return jsonRes;
+    }
+    else {
+      window.alert('Please fill up the form properly')
+    }
   }
 
   const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setDescription(event.target.value)
+    setLetterCount(event.target.value.length)
   }
   const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPrice(Number(event.target.value))
@@ -71,24 +78,28 @@ updatePricing()
 
 
     return (
-      <main className='md:pt-10 pt-28 flex md:flex-row flex-col gap-10'>
+      <main className='pt-28 flex md:flex-row flex-col gap-10'>
         <AnimatePresence>
           {show && (
-            <motion.div
+            <motion.form
             layout
             initial={{right: -250, opacity: 0}}
             animate={{right: 0, opacity: 1}}
             exit={{right: -250, opacity: 0}}
             transition={{ease: "linear", duration: 0.4}}
             className={`absolute bg-mygray md:w-3/6 w-[90vw] h-screen top-0 right-[-200px] flex flex-col justify-around p-10`}>
-            <IoClose onClick={hideForm} />
-            <textarea maxLength={200} onChange={handleDescriptionChange} className='rounded-lg p-7' cols={10} rows={12} name="description" id="description" />
+            <IoClose className='text-3xl' onClick={hideForm} />
+            <div className='w-[90%]'>
+            <textarea maxLength={200} minLength={100} onChange={handleDescriptionChange} className='rounded-lg p-7 w-full' cols={10} rows={12} name="description" id="description" />
+            <p>Please, enter a description between 100 and 200 characters</p>
+            <p>Character count: {lettercount}</p>
+            </div>
             <input onChange={handlePriceChange} className='rounded-lg px-6 p-5' type="number" min={3} name="price" id="price" />
         <button onClick={() => {
           editPricing(id as number).then(() => updatePricing())
           setShow(false)
           }} className='bg-mytheme py-3 px-6 rounded-full w-fit'>Update</button>
-          </motion.div>
+          </motion.form>
           )}       
       </AnimatePresence>
        <div className='p-6 bg-mygray rounded-lg flex flex-col gap-5'>

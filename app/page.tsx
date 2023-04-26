@@ -166,7 +166,7 @@ export default function Home() {
   
   
   return (
-    <main className='md:flex md:gap-20 gap-20 justify-center md:pt-28 pt-10'>
+    <main className='md:flex md:gap-20 gap-20 justify-center pt-28'>
       <div className='w-full md:h-[70vh] m-auto flex justify-items-center justify-center'>
         <DayPicker
         modifiers={{ half: halfDays, full: fullDays, night: dayAndNight}}
