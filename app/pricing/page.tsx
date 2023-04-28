@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import {IoClose} from 'react-icons/io5'
 import {motion, AnimatePresence} from 'framer-motion'
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent } from 'react';
 
 
 
