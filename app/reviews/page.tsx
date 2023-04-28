@@ -1,7 +1,7 @@
 "use client"
 
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState, ChangeEvent } from "react";
 import {IoClose} from 'react-icons/io5'
 import {motion, AnimatePresence} from 'framer-motion'
 
@@ -34,7 +34,7 @@ useEffect(() => {
 const hideForm = () => {
   setShow(false)
 }
-const answerOnChange = (event) => {
+const answerOnChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
   setAnswer(event.target.value)
 }
 
