@@ -3,6 +3,8 @@
 import React, { useState } from "react"
 import {IoClose} from 'react-icons/io5'
 import {motion, AnimatePresence} from 'framer-motion'
+import React, { ChangeEvent, useState } from 'react';
+
 
 
 type dayInfo = {
@@ -44,11 +46,11 @@ const [lettercount, setLetterCount] = useState(0)
     }
   }
 
-  const handleDescriptionChange = (event) => {
+  const handleDescriptionChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setDescription(event.target.value)
     setLetterCount(event.target.value.length)
   }
-  const handlePriceChange = (event) => {
+  const handlePriceChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setPrice(Number(event.target.value))
   }
   const handleIdChange = (newId: number) => {
