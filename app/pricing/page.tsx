@@ -44,11 +44,11 @@ const [lettercount, setLetterCount] = useState(0)
     }
   }
 
-  const handleDescriptionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDescriptionChange = (event) => {
     setDescription(event.target.value)
     setLetterCount(event.target.value.length)
   }
-  const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePriceChange = (event) => {
     setPrice(Number(event.target.value))
   }
   const handleIdChange = (newId: number) => {
