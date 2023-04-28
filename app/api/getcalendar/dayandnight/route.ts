@@ -3,7 +3,7 @@ import { prisma } from "components/prisma/seed";
 export async function GET() {
     const responseFromPrisma = await prisma.availability.findMany({
         where: {
-            status: 'Day And Night'
+            status: 'Day and Night'
         }
     });
 
