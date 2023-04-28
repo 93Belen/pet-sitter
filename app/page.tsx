@@ -128,9 +128,6 @@ export default function Home() {
     }
   };
 
-  console.log('half days',halfDays)
-  console.log('full days',fullDays)
-  console.log('days and nights',dayAndNight)
 
 
 
