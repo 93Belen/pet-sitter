@@ -116,7 +116,7 @@ const deleteReview = async(idToDelete: string) => {
             animate={{right: 0, opacity: 1}}
             exit={{right: -250, opacity: 0}}
             transition={{ease: "linear", duration: 0.4}}
-            className={`fixed bg-mygray md:w-3/6 w-[90vw] h-screen top-0 right-[-200px] flex flex-col justify-around p-10 opacity-70 backdrop-blur-lg`}>
+            className={`fixed bg-mygray md:w-3/6 w-[90vw] h-screen top-0 right-[-200px] flex flex-col justify-around p-10 opacity-60 backdrop-blur-lg`}>
             <IoClose className='text-3xl' onClick={hideForm} />
             <textarea onChange={answerOnChange} maxLength={150}  className='rounded-lg p-7' cols={10} rows={12} name="description" id="description" />
             <button onClick={postAnswer} className='bg-mytheme py-3 px-6 rounded-full w-fit'>Answer</button>
