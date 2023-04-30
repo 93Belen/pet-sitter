@@ -154,11 +154,12 @@ export default function Home() {
   const res = await fetch('api/addtocalendar', {
     method: 'POST',
     body: JSON.stringify({availabilities})
-  }).then((res) => getCalendar())
-  setClicked(true)
-  setTimeout(() => {
+  }).then((res) => {
+    setClicked(true)
+    setTimeout(() => {
     setClicked(false)
   }, 1000)
+  }).then(() => getCalendar()) 
   }
   
   
