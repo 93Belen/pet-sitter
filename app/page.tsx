@@ -155,6 +155,8 @@ export default function Home() {
     method: 'POST',
     body: JSON.stringify({availabilities})
   })
+  const jsonsRes = await res.json()
+  return jsonsRes;
   }
 
 const postAndRefresh = () => {
