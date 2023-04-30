@@ -46,7 +46,7 @@ export default function Home() {
   }
   useEffect(() => {
     getCalendar()
-  })
+  }, [])
 
   const isItInHalf = (day: Date) => {
     let result;
