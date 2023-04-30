@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import {IoClose} from 'react-icons/io5'
 import {motion, AnimatePresence} from 'framer-motion'
 import { ChangeEvent } from 'react';
@@ -76,7 +76,9 @@ const updatePricing = () => {
   })
 }
 
-updatePricing()
+useEffect(() => {
+  updatePricing()
+}, [show])
 
 
     return (
