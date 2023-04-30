@@ -75,7 +75,7 @@ const deleteReview = async(idToDelete: string) => {
   const displayReviews = () => {
     const arr: React.ReactNode[] = [];
     reviews?.forEach(review => {
-      arr.push(
+      arr.unshift(
         <motion.div layout key={review.id} className='p-6 bg-mygray rounded-lg flex flex-col gap-5'>
          <h2>{review.user}</h2>
          <p>{review.text}</p>
