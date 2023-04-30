@@ -29,7 +29,7 @@ export default function Reviews() {
 
 useEffect(() => {
   getReviews().then((res) => setReviews(res))
-},[reviews])
+}, [show])
 
 const hideForm = () => {
   setShow(false)

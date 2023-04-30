@@ -160,13 +160,13 @@ export default function Home() {
   }
 
 const postAndRefresh = async() => {
-  await sendToDB().then((res) => {
+    sendToDB().then((res) => {
     setClicked(true)
     setTimeout(() => {
     setClicked(false)
   }, 1000)
-  }).then(async() =>{
-    await getCalendar()
+  }).then(() =>{
+    getCalendar()
   }) 
 }
 
