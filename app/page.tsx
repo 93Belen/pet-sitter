@@ -159,14 +159,14 @@ export default function Home() {
   return jsonsRes;
   }
 
-const postAndRefresh = () => {
-  sendToDB().then((res) => {
+const postAndRefresh = async() => {
+  await sendToDB().then((res) => {
     setClicked(true)
     setTimeout(() => {
     setClicked(false)
   }, 1000)
-  }).then(() =>{
-    getCalendar()
+  }).then(async() =>{
+    await getCalendar()
   }) 
 }
 
