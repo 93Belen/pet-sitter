@@ -46,7 +46,7 @@ export default function Home() {
   }
   useEffect(() => {
     getCalendar()
-  },[])
+  },[halfDays, fullDays, dayAndNight])
 
   const isItInHalf = (day: Date) => {
     let result;
