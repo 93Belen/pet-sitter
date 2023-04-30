@@ -154,13 +154,20 @@ export default function Home() {
   const res = await fetch('api/addtocalendar', {
     method: 'POST',
     body: JSON.stringify({availabilities})
-  }).then((res) => {
+  })
+  }
+
+const postAndRefresh = () => {
+  sendToDB().then((res) => {
     setClicked(true)
     setTimeout(() => {
     setClicked(false)
   }, 1000)
-  }).then(() => getCalendar()) 
-  }
+  }).then(() =>{
+    getCalendar()
+  }) 
+}
+
   
   
   return (
@@ -178,7 +185,7 @@ export default function Home() {
 
         <button
         id='save-button' 
-        onClick={sendToDB} 
+        onClick={postAndRefresh} 
         className='bg-mytheme py-3 px-6 rounded-full w-fit hover:bg-mylighttheme duration-1000 pointer-events-auto flex gap-2 justify-center'>
           <AnimatePresence>   
           {clicked && (
